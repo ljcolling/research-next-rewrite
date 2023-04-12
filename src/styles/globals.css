@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.article {
+  @apply prose;
+  @apply prose-neutral;
+  @apply prose-base;
+  @apply mx-auto
+}
+
+.menu-item {
+  @apply text-base;
+  @apply hover:text-blue-500;
+  @apply duration-500;
+  @apply flex;
+  @apply justify-end;
+
+}
