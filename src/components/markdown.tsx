@@ -7,12 +7,9 @@ import rehypeRaw from 'rehype-raw'
 // import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 // import {dracula} from 'react-syntax-highlighter'
 
-interface MarkdownProps {
-  children: string
-}
 
 
-export const Markdown = ({ children }: MarkdownProps)=> {
+export const Markdown = ({ children }: {children: string})=> {
   return (
       <div className="prose prose-neutral prose-base mx-auto">
     <ReactMarkdown

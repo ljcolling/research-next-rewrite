@@ -1,15 +1,11 @@
-
 import Head from 'next/head'
 import Link from "next/link";
 
 
 import { useState, type ReactNode, type Dispatch, type SetStateAction } from "react"
 
-interface Props {
-  children: ReactNode
-}
 
-const Main = ({ children }: Props) => {
+const Main = ({ children }: { children: ReactNode }) => {
   return (
     <main className="flex-grow px-5 font-body md:overflow-y-auto bg-gradient-to-b from-white to-gray-100 border border-gray-200 ">
       {children}
@@ -18,70 +14,32 @@ const Main = ({ children }: Props) => {
 }
 
 
-const menuitems = [
+const menuitems: Array<{ text: string, link: string }> = [
   { text: "Research", link: "research" },
   { text: "Publications", link: "publications" },
   { text: "Teaching", link: "teaching" },
   { text: "Blog", link: "http://blog.colling.net.nz" },
 ]
 
-type menuitem = { text: string, link: string };
-
-type menuprops = {
-  menuitems: Array<menuitem>
-  display: boolean
-  setDisplay: Dispatch<SetStateAction<boolean>>
-}
 
 
-const Menu = ({ menuitems, display, setDisplay }: menuprops) => {
- 
+const Menu = ({ items }: {
+  items: typeof menuitems
+}) => {
+
   return (
-    <div className={`
-duration-500 
-md:static 
-absolute 
-bg-white 
-md:min-h-fit 
-right-2
-${display ? "top-[5%]" : "top-[-100%]"}
-md:w-auto 
-md:shadow-none
-shadow
-items-center
-
-`}>
-
-
- 
-
-    <ul className="
-        flex 
-        md:flex-row
-        md:items-center
-        md:gap-8
-        md:p-0
-       md:mx-auto 
-      flex-col
-       
-      " >
-      <li className="md:p-0 
-          py-2
-          px-5
-          border">
-        <Link href="./" className="menu-item font-semibold"
-              onClick={() => setDisplay(false)}
-          >Home</Link>
-      </li>
-      {menuitems.map((value, key) => {
-        return (<li key={key} className='md:p-0 py-2 px-5 border'>
-          <Link className="menu-item" key={key} href={value.link}
-              onClick={() => setDisplay(false)}
-            >{value.text}</Link>
-        </li>)
-      })
-      }
-    </ul>
+    <div className="md:static md:min-h-fit md:w-auto">
+      <ul className="flex md:flex-row flex-col md:items-center md:gap-8 md:p-0 md:mx-auto " >
+        <li className="md:p-0 py-2">
+          <Link href="./" className="font-semibold">Home</Link>
+        </li>
+        {items.map((value, key) => {
+          return (<li key={key} className="md:p-0 pt-2 ">
+            <Link className="" key={key} href={value.link}>{value.text}</Link>
+          </li>)
+        })
+        }
+      </ul>
     </div>
 
   )
@@ -94,20 +52,28 @@ const Navbar = () => {
 
   return (
     <header className="shadow p-5">
-      <nav className='flex justify-between items-center mx-auto w-[95%]'>
-        <div className="z-10">Lincoln <strong>Colling</strong></div>
-        <Menu menuitems={menuitems} display={display} setDisplay={setDisplay}
-        />
-        <div className="flex items-center md:hidden hover:text-blue-500"
-          role='button'
-          onClick={() => setDisplay(!display)}  
-        >Menu</div>
+      <nav className=''>
+        <div className='flex md:flex-row flex-col mx-auto max-auto md:justify-between justify-center'>
+          <div className='flex-col'>
+          <div className='flex flex-row pb-5 md:pb-0'>
+          <div className="md:block md:relative absolute">Lincoln <strong>Colling</strong></div>
+          <button className="md:hidden hover:text-blue-500 absolute md:relative right-5" role='button' onClick={() => setDisplay(!display)} >=</button>
+          </div>
+          </div>
+        <div>
+            { display ? null :
+          <div className='pt-2 md:pt-0'>
+            <Menu items={menuitems} />
+          </div>
+              }
+          </div>
+        </div>
       </nav>
     </header>
   )
 }
 
-const Body = ({ children }: Props) => {
+const Body = ({ children }: { children: ReactNode }) => {
   return (
     <div className="container flex bg-gray-100 h-full max-w-full">
       <div className="container flex flex-col bg-white h-full max-w-4xl mx-auto min-h-screen">
@@ -126,7 +92,7 @@ const Footer = () => {
   )
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (<>
     <Head>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons/css/academicons.min.css" />

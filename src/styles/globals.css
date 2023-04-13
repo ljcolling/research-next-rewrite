@@ -13,7 +13,6 @@
   @apply text-base;
   @apply hover:text-blue-500;
   @apply duration-500;
-  @apply flex;
-  @apply justify-end;
+ 
 
 }
