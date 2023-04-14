@@ -33,9 +33,15 @@ const menuitems: Array<{ text: string, link: string }> = [
 const Body = ({ open, children }: { open: boolean; children: ReactNode }) => {
   return (
     <div className={`container flex 
-${!open ? "bg-gray-800" : "bg-gray-100" }
+${open ? "bg-gray-800" : "bg-gray-100" }
 h-full max-w-full`}>
-      <div className="container flex flex-col bg-white h-full max-w-4xl mx-auto min-h-screen">
+      <div className={`container flex flex-col tranform ease-in-ou
+${open ? 
+"bg-gray-800 -translate-y-0" : 
+"bg-white -tranlate-y-full" }
+        h-full max-w-4xl mx-auto min-h-screen
+transition-transfrom duration-500
+`}>
         {children}
       </div>
     </div>
