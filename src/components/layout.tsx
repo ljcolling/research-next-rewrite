@@ -3,27 +3,23 @@ import NextLink from "next/link";
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useState, type ReactNode, type Dispatch, type SetStateAction} from "react"
+import { useState, type ReactNode, type Dispatch, type SetStateAction } from "react"
 import { useRouter } from 'next/router';
 
 
 
 const Main = ({ visible, children }: { visible: boolean, children: ReactNode }) => {
-  console.log(visible)
-  return (
-    <main className={`
-${visible ? 
-  "h-1 fixed overflow-hidden": 
-  ""
-}
-  bg-gradient-to-b from-white to-gray-100
+  if (visible) {
+    return (<main className=' bg-gradient-to-b from-white to-gray-100
       flex-grow px-5 font-body 
       md:overflow-y-auto 
-border border-gray-200
-`}>
+border border-gray-200'>
       {children}
     </main>
-  )
+    )
+  }
+  return <main></main>
+
 }
 
 
@@ -47,11 +43,11 @@ const Body = ({ children }: { children: ReactNode }) => {
 }
 
 
-const Footer = ({visible} : {visible: boolean}) => {
- 
+const Footer = ({ visible }: { visible: boolean }) => {
+
   return (
     <footer className=
-    {`${!visible ? "visible" : "invisible"}
+      {`${!visible ? "visible" : "invisible"}
 text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center`}>
       Copyright 2023, Lincoln Colling
     </footer>
@@ -61,8 +57,8 @@ text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center`}>
 
 
 export default function Layout({ children }: { children: ReactNode }) {
- const [open, setOpen] = useState(false) 
-  
+  const [open, setOpen] = useState(false)
+
   return (<>
     <Head>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons/css/academicons.min.css" />
@@ -78,10 +74,10 @@ export default function Layout({ children }: { children: ReactNode }) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Body>
-        <NavBar open={open} setOpen={setOpen} />
-        <Main visible={open}>
-          {children}
-        </Main>
+      <NavBar open={open} setOpen={setOpen} />
+      <Main visible={open}>
+        {children}
+      </Main>
       <Footer visible={open} />
     </Body>
   </>
@@ -109,7 +105,7 @@ const MobileNav = ({
   return (
 
     <div
-      style={{height: "100%"}}
+      style={{ height: "100%" }}
       className={`absolute top-0 left-0  h-full w-screen z-10 bg-gray-800 transform 
 ${open ? "-translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out filter drop-shadow-md 
@@ -128,8 +124,8 @@ text-xl font-normal my-4
 
                   } ${value.text === "Home" ? "font-semibold text-white" : ""}`}
                 onClick={() => {
-                    setOpen(!open)
-                  }}
+                  setOpen(!open)
+                }}
               >
                 {value.text}
               </NextLink>
@@ -142,19 +138,19 @@ text-xl font-normal my-4
 };
 
 export const NavBar = (
-  {open, setOpen} : 
-  {open: boolean; setOpen: Dispatch<SetStateAction<boolean>>;}
+  { open, setOpen }:
+    { open: boolean; setOpen: Dispatch<SetStateAction<boolean>>; }
 ) => {
   return (
 
     <nav className={`flex md:flex-row px-4 py-4 h-20 max-auto items-center
 ${open ? "overflow-none z-10" : ""}
       `}>
-        <NextLink href="/">
-      <div className="flex md:flex-row flex-col h-12 w-auto items-center md:space-x-1">
+      <NextLink href="/">
+        <div className="flex md:flex-row flex-col h-12 w-auto items-center md:space-x-1">
           <span>Lincoln</span>
-        <span><strong>Colling</strong></span>
-      </div>
+          <span><strong>Colling</strong></span>
+        </div>
       </NextLink>
       <MobileNav open={open} setOpen={setOpen} items={menuitems} />
       <div className="w-full flex justify-end ">
@@ -192,7 +188,7 @@ ${open ? "overflow-none z-10" : ""}
     </nav>
 
 
-  
+
 
   );
 };
@@ -211,8 +207,8 @@ const NavLink = ({
       href={to}
       className={`px-4 transition ease-in-out duration-300 relative 
       ${router.asPath === to
-        ? "text-purple-500"
-        : "stroke  hover:text-purple-300"
+          ? "text-purple-500"
+          : "stroke  hover:text-purple-300"
         }`}
     >
       {children}
