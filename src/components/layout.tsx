@@ -30,9 +30,11 @@ const menuitems: Array<{ text: string, link: string }> = [
 ]
 
 
-const Body = ({ children }: { children: ReactNode }) => {
+const Body = ({ open, children }: { open: boolean; children: ReactNode }) => {
   return (
-    <div className="container flex bg-gray-100 h-full max-w-full">
+    <div className={`container flex 
+${!open ? "bg-gray-800" : "bg-gray-100" }
+h-full max-w-full`}>
       <div className="container flex flex-col bg-white h-full max-w-4xl mx-auto min-h-screen">
         {children}
       </div>
@@ -69,7 +71,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <meta name="description" content="Lincoln Colling Research Page" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Body>
+    <Body open={open}>
       <NavBar open={open} setOpen={setOpen} />
       { open ? <></> :
         <>
