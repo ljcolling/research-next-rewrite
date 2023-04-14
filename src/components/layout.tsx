@@ -3,13 +3,23 @@ import NextLink from "next/link";
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useState, type ReactNode, type Dispatch, type SetStateAction } from "react"
+import { useState, type ReactNode, type Dispatch, type SetStateAction} from "react"
 import { useRouter } from 'next/router';
 
 
-const Main = ({ children }: { children: ReactNode }) => {
+
+const Main = ({ visible, children }: { visible: boolean, children: ReactNode }) => {
+  console.log(visible)
   return (
-    <main className="flex-grow px-5 font-body md:overflow-y-auto bg-gradient-to-b from-white to-gray-100 border border-gray-200 ">
+    <main className={`
+${visible ? 
+  "h-0 overflow-hidden": ""
+}
+  bg-gradient-to-b from-white to-gray-100
+      flex-grow px-5 font-body 
+      md:overflow-y-auto 
+border border-gray-200
+`}>
       {children}
     </main>
   )
@@ -36,15 +46,22 @@ const Body = ({ children }: { children: ReactNode }) => {
 }
 
 
-const Footer = () => {
+const Footer = ({visible} : {visible: boolean}) => {
+ 
   return (
-    <footer className="text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center">
+    <footer className=
+    {`${!visible ? "visible" : "invisible"}
+text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center`}>
       Copyright 2023, Lincoln Colling
     </footer>
   )
 }
 
+
+
 export default function Layout({ children }: { children: ReactNode }) {
+ const [open, setOpen] = useState(false) 
+  
   return (<>
     <Head>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons/css/academicons.min.css" />
@@ -60,11 +77,11 @@ export default function Layout({ children }: { children: ReactNode }) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Body>
-      <NavBar />
-      <Main>
-        {children}
-      </Main>
-      <Footer />
+        <NavBar open={open} setOpen={setOpen} />
+        <Main visible={open}>
+          {children}
+        </Main>
+      <Footer visible={open} />
     </Body>
   </>
   )
@@ -89,6 +106,7 @@ const MobileNav = ({
 
 
   return (
+
     <div
       style={{height: "100%"}}
       className={`absolute top-0 left-0  h-full w-screen z-10 bg-gray-800 transform 
@@ -108,7 +126,9 @@ ${open ? "-translate-x-0" : "-translate-x-full"
 text-xl font-normal my-4 
 
                   } ${value.text === "Home" ? "font-semibold text-white" : ""}`}
-                onClick={() => setOpen(!open)}
+                onClick={() => {
+                    setOpen(!open)
+                  }}
               >
                 {value.text}
               </NextLink>
@@ -120,9 +140,12 @@ text-xl font-normal my-4
   );
 };
 
-export const NavBar = () => {
-  const [open, setOpen] = useState(false);
+export const NavBar = (
+  {open, setOpen} : 
+  {open: boolean; setOpen: Dispatch<SetStateAction<boolean>>;}
+) => {
   return (
+
     <nav className={`flex md:flex-row px-4 py-4 h-20 max-auto items-center
 ${open ? "overflow-none z-10" : ""}
       `}>
@@ -166,6 +189,9 @@ ${open ? "overflow-none z-10" : ""}
         </div>
       </div>
     </nav>
+
+
+  
 
   );
 };
