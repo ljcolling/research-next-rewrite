@@ -8,6 +8,19 @@
 const config = {
   reactStrictMode: true,
 
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.module.rules.push(
+      {
+        test: /\.md$/,
+        // This is the asset module.
+        type: 'asset/source',
+      }
+    )
+    return config
+  },
+
+
+
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
    * must comment the below `i18n` config out.
@@ -20,3 +33,4 @@ const config = {
   },
 };
 export default config;
+

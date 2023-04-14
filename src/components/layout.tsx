@@ -26,6 +26,7 @@ const menuitems: Array<{ text: string, link: string }> = [
   { text: "Research", link: "/research" },
   { text: "Publications", link: "/publications" },
   { text: "Teaching", link: "/teaching" },
+  { text: "Software", link: "/software" },
   { text: "Blog", link: "http://blog.colling.net.nz" },
 ]
 

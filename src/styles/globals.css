@@ -16,3 +16,14 @@
  
 
 }
+
+.article h3 {
+  @apply uppercase;
+  @apply text-base;
+  @apply font-medium
+}
+
+.article h4 {
+  @apply uppercase;
+  @apply text-sm;
+}
