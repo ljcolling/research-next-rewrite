@@ -13,7 +13,8 @@ const Main = ({ visible, children }: { visible: boolean, children: ReactNode }) 
   return (
     <main className={`
 ${visible ? 
-  "h-0 overflow-hidden": ""
+  "h-1 fixed overflow-hidden": 
+  ""
 }
   bg-gradient-to-b from-white to-gray-100
       flex-grow px-5 font-body 
