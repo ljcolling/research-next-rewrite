@@ -8,17 +8,15 @@ import { useRouter } from 'next/router';
 
 
 
-const Main = ({ visible, children }: { visible: boolean, children: ReactNode }) => {
-  if (visible) {
-    return (<main className=' bg-gradient-to-b from-white to-gray-100
+const Main = ({ children }: { children: ReactNode }) => {
+
+  return (<main className=' bg-gradient-to-b from-white to-gray-100
       flex-grow px-5 font-body 
       md:overflow-y-auto 
 border border-gray-200'>
-      {children}
-    </main>
-    )
-  }
-  return <main></main>
+    {children}
+  </main>
+  )
 
 }
 
@@ -43,12 +41,10 @@ const Body = ({ children }: { children: ReactNode }) => {
 }
 
 
-const Footer = ({ visible }: { visible: boolean }) => {
+const Footer = ()=> {
 
   return (
-    <footer className=
-      {`${!visible ? "visible" : "invisible"}
-text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center`}>
+    <footer className=" text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center">
       Copyright 2023, Lincoln Colling
     </footer>
   )
@@ -75,10 +71,14 @@ export default function Layout({ children }: { children: ReactNode }) {
     </Head>
     <Body>
       <NavBar open={open} setOpen={setOpen} />
-      <Main visible={open}>
+      { open ? <></> :
+        <>
+      <Main>
         {children}
       </Main>
-      <Footer visible={open} />
+      <Footer />
+      </>
+      }
     </Body>
   </>
   )
