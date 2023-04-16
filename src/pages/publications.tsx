@@ -37,8 +37,8 @@ import { useState } from "react"
 const Reference = ({ reference }: { reference: Reference }) => {
 
   const [showabstract, setShowabstract] = useState<boolean>(false)
-  return (<div className="border-t py-2">
-    <div className="flex flex-row text-left py-2">
+  return (
+    <div>
       <div className="pr-3"><strong>{reference.year}</strong>: </div>
       <div className="pl-3 text-left">
         <div>
@@ -61,15 +61,7 @@ ${!reference.abstract ? "opacity-50" : "hover:bg-blue-700"}
           </div>
       
       </div>
-
-    </div>
-{/*      {!showabstract ? null : */}
-    <article className={`${showabstract ? "opacity-100 duration-200 py-5" : "max-h-[0px] opacity-0 duration-0 py-0"} 
-shadow-lg bg-white text-sm px-5 z-10 rounded transition-all`}>
-      {reference.abstract}
-    </article>
-{/*      } */}
-  </div>
+</div>
 
   )
 
@@ -78,23 +70,23 @@ shadow-lg bg-white text-sm px-5 z-10 rounded transition-all`}>
 
 }
 
+    /* <article className={`${showabstract ? "opacity-100 duration-200 py-5" : "max-h-[0px] opacity-0 duration-0 py-0"} 
+shadow-lg bg-white text-sm px-5 z-10 rounded transition-all`}>
+      {reference.abstract}
+    </article> */
 
 
 
 const Publications: NextPage = () => {
 
-  return (<>
-    <div className="pt-10 md:container container md:mx-auto md:content-center text-justify pb-20 px-1">
+  return (
       <article className="article">
-        <h3>Publications</h3>
-        <div>
+      <h3 style={{marginTop: 0}}
+        className="prose prose-neutral prose-base mx-auto">Publications</h3>
         {references.map((ref, index) => {
           return <Reference key={index} reference={ref} />
         })}
-        </div>
       </article>
-    </div>
-    </>
   )
 
 }

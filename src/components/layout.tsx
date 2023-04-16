@@ -10,12 +10,10 @@ import { useRouter } from 'next/router';
 
 const Main = ({ children }: { children: ReactNode }) => {
 
-  return (<main className=' bg-gradient-to-b from-white to-gray-100
-      flex-grow px-5 font-body 
-      md:overflow-y-auto 
-border border-gray-200'>
-    {children}
-  </main>
+  return (
+    <main className='p-4 flex-grow bg-gray-200'>
+      {children}
+    </main>
   )
 
 }
@@ -33,27 +31,16 @@ const menuitems: Array<{ text: string, link: string }> = [
 
 const Body = ({ open, children }: { open: boolean; children: ReactNode }) => {
   return (
-    <div className={`container flex 
-${open ? "bg-gray-800" : "bg-gray-100" }
-h-full max-w-full`}>
-      <div className={`container flex flex-col tranform ease-in-ou
-${open ? 
-"bg-gray-800 -translate-y-0" : 
-"bg-white -tranlate-y-full" }
-        h-full max-w-4xl mx-auto min-h-screen
-transition-transfrom duration-500
-`}>
-        {children}
-      </div>
+    <div className='flex flex-col h-screen'>
+      {children}
     </div>
   )
 }
 
 
-const Footer = ()=> {
-
+const Footer = () => {
   return (
-    <footer className=" text-xs py-2 px-2 font-light bg-gray-100 border border-gray-200 text-center">
+    <footer className="text-xs py-2 px-2 font-light text-center">
       Copyright 2023, Lincoln Colling
     </footer>
   )
@@ -80,14 +67,14 @@ export default function Layout({ children }: { children: ReactNode }) {
     </Head>
     <Body open={open}>
       <NavBar open={open} setOpen={setOpen} />
-      { open ? <></> :
+      {open ? <></> :
         <>
-      <Main>
-        {children}
-      </Main>
-      <Footer />
-      </>
+          <Main>
+            {children}
+          </Main>
+        </>
       }
+      <Footer />
     </Body>
   </>
   )
@@ -115,7 +102,7 @@ const MobileNav = ({
 
     <div
       style={{ height: "100%" }}
-      className={`absolute top-0 left-0  h-full w-screen z-10 bg-gray-800 transform 
+      className={`absolute top-0 left-0  w-screen z-10 bg-gray-800 transform 
 ${open ? "-translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out filter drop-shadow-md 
 
