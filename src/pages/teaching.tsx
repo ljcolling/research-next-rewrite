@@ -3,7 +3,6 @@ import { type NextPage } from "next";
 import { Markdown } from "../components/markdown";
 
 
-
 import teaching from "../text/teaching.md";
 
 

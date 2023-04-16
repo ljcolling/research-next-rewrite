@@ -37,7 +37,7 @@ import { useState } from "react"
 const Reference = ({ reference }: { reference: Reference }) => {
 
   const [showabstract, setShowabstract] = useState<boolean>(false)
-  return (<div className="relative border-t py-2">
+  return (<div className="border-t py-2">
     <div className="flex flex-row text-left py-2">
       <div className="pr-3"><strong>{reference.year}</strong>: </div>
       <div className="pl-3 text-left">
@@ -83,15 +83,18 @@ shadow-lg bg-white text-sm px-5 z-10 rounded transition-all`}>
 
 const Publications: NextPage = () => {
 
-  return (
-    <div className="pt-10 md:container container md:mx-auto md:content-center text-justify pb-20 px-1 mx:auto">
+  return (<>
+    <div className="pt-10 md:container container md:mx-auto md:content-center text-justify pb-20 px-1">
       <article className="article">
-        <h3 className="uppercase text-base font-medium">Publications</h3>
+        <h3>Publications</h3>
+        <div>
         {references.map((ref, index) => {
           return <Reference key={index} reference={ref} />
         })}
+        </div>
       </article>
     </div>
+    </>
   )
 
 }

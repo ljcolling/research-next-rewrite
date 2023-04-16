@@ -41,3 +41,5 @@ ARM Matlab is a Masters level introductory course on Matlab. The aim of this
 course is to familiarise students with the basics of Matlab and PsychToolBox.
 
 The course website is available [here](https://matlab.mindsci.net/)
+
+
