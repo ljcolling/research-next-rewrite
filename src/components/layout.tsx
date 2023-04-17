@@ -1,17 +1,17 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import NextLink from "next/link";
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useState, type ReactNode, type Dispatch, type SetStateAction } from "react"
 import { useRouter } from 'next/router';
+import { useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 
 
 
 const Main = ({ children }: { children: ReactNode }) => {
 
   return (
-    <main className='p-4 flex-grow bg-gray-200'>
+    <main className='p-4 flex-grow pb-5'>
       {children}
     </main>
   )
@@ -29,7 +29,7 @@ const menuitems: Array<{ text: string, link: string }> = [
 ]
 
 
-const Body = ({ open, children }: { open: boolean; children: ReactNode }) => {
+const Body = ({ children }: { open: boolean; children: ReactNode }) => {
   return (
     <div className='flex flex-col h-screen'>
       {children}
@@ -40,11 +40,12 @@ const Body = ({ open, children }: { open: boolean; children: ReactNode }) => {
 
 const Footer = () => {
   return (
-    <footer className="text-xs py-2 px-2 font-light text-center">
+    <footer className="text-xs py-2 px-2 font-light text-center bg-gray-50 mt-10 ">
       Copyright 2023, Lincoln Colling
     </footer>
   )
 }
+
 
 
 
@@ -86,7 +87,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 
 
-
 const MobileNav = ({
   open,
   setOpen,
@@ -102,7 +102,7 @@ const MobileNav = ({
 
     <div
       style={{ height: "100%" }}
-      className={`absolute top-0 left-0  w-screen z-10 bg-gray-800 transform 
+      className={`absolute top-0 left-0  w-screen z-10 bg-gray-50 transform 
 ${open ? "-translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out filter drop-shadow-md 
 
@@ -115,10 +115,10 @@ ${open ? "-translate-x-0" : "-translate-x-full"
               <NextLink
                 key={key}
                 href={value.link}
-                className={`text-slate-100
+                className={`
 text-xl font-normal my-4 
 
-                  } ${value.text === "Home" ? "font-semibold text-white" : ""}`}
+                  } ${value.text === "Home" ? "font-semibold " : ""}`}
                 onClick={() => {
                   setOpen(!open)
                 }}
@@ -139,7 +139,7 @@ export const NavBar = (
 ) => {
   return (
 
-    <nav className={`flex md:flex-row px-4 py-4 h-20 max-auto items-center
+    <nav className={`bg-gray-100 flex md:flex-row px-4 py-4 h-20 max-auto items-center
 ${open ? "overflow-none z-10" : ""}
       `}>
       <NextLink href="/">

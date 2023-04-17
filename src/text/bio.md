@@ -21,3 +21,5 @@ affiliated with the Collective Cognition Research Group, the Perception and
 Action Research Centre, and the Music, Sound, and Performance Laboratory. Before
 this, I completed my Bachelor and Master of Science degree in the Department of
 Psychology at the University of Auckland.
+
+
