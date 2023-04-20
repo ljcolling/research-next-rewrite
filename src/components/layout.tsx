@@ -31,18 +31,22 @@ const menuitems: Array<{ text: string, link: string }> = [
 
 const Body = ({ children }: { open: boolean; children: ReactNode }) => {
   return (
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col h-screen min-w-min'>
       {children}
     </div>
   )
 }
 
 
-const Footer = () => {
+const Footer = ({ open }: { open: boolean }) => {
   return (
-    <footer className="text-xs py-2 px-2 font-light text-center bg-gray-50 mt-10 ">
-      Copyright 2023, Lincoln Colling
-    </footer>
+    <>
+      {!open &&
+        <footer className="text-xs py-2 px-2 font-light text-center bg-gray-50 mt-10 ">
+          Copyright 2023, Lincoln Colling
+        </footer>
+      }
+    </>
   )
 }
 
@@ -75,7 +79,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </Main>
         </>
       }
-      <Footer />
+      <Footer open={open} />
     </Body>
   </>
   )
@@ -102,7 +106,7 @@ const MobileNav = ({
 
     <div
       style={{ height: "100%" }}
-      className={`absolute top-0 left-0  w-screen z-10 bg-gray-50 transform 
+      className={`absolute top-0 left-0  z-10 bg-gray-50 transform w-full
 ${open ? "-translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out filter drop-shadow-md 
 

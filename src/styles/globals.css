@@ -28,3 +28,24 @@
   @apply text-sm;
 }
 
+.btn {
+  @pplay py-3;
+  @apply border-solid;
+  @apply border-blue-500;
+  /* @apply disabled:border-red-500; */
+  @apply border;
+  @apply w-40;
+  @apply md:text-base;
+  @apply text-xs;
+  @apply rounded;
+  @apply bg-blue-50;
+  @apply disabled:hover:bg-blue-50;
+  @apply disabled:opacity-50;
+  @apply hover:bg-blue-200;
+  @apply font-normal;
+}
+
+.btn a {
+ @apply font-normal;
+  text-decoration: none;
+}
