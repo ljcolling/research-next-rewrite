@@ -1,6 +1,6 @@
 import { type NextPage } from "next"
 
-import { useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
+import { useState } from "react";
 type Reference = {
   title: string,
   journal: string,
@@ -14,13 +14,20 @@ type Reference = {
 
 
 
-
 import references from "../references.json"
 
 
 
-const Reference = ({ reference }: { reference: Reference }) => {
-  const [showabstract, setShowabstract] = useState(false);
+
+/* type ArrayElement<Type> = Type extends Array<infer Item> ? Item : Type
+
+type Reference = NonNullable<Partial<ArrayElement<typeof references>>>
+
+let ref: Reference */
+
+const ReferenceDisplay = ({ reference }: { reference: Reference}) => {
+ 
+   const [showabstract, setShowabstract] = useState(false);
 
   return (<>
     <div className="flex flex-row pt-5 pb-2">
@@ -56,11 +63,12 @@ const Reference = ({ reference }: { reference: Reference }) => {
 
 
 
+
 const Publications: NextPage = () => (
   <article className="article">
     <h3 style={{ marginTop: 0 }}
       className="prose prose-neutral prose-base mx-auto">Publications</h3>
-    {references.map((ref, index) => <Reference key={index} reference={ref} />)}
+    {references.map((ref, index) => <ReferenceDisplay key={index} reference={ref} />)}
   </article>
 )
 

@@ -106,7 +106,7 @@ const MobileNav = ({
 
     <div
       style={{ height: "100%" }}
-      className={`absolute top-0 left-0  z-10 bg-gray-50 transform w-full
+      className={`absolute top-0 left-0  z-10 bg-gray-50 transform 
 ${open ? "-translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out filter drop-shadow-md 
 
@@ -144,7 +144,7 @@ export const NavBar = (
   return (
 
     <nav className={`bg-gray-100 flex md:flex-row px-4 py-4 h-20 max-auto items-center
-${open ? "overflow-none z-10" : ""}
+${open ? "overflow-none z-10" : ""} 
       `}>
       <NextLink href="/">
         <div className="flex md:flex-row flex-col h-12 w-auto items-center md:space-x-1">

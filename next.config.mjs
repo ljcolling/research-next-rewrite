@@ -8,7 +8,7 @@
 const config = {
   reactStrictMode: true,
 
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config, _)=> {
     config.module.rules.push(
       {
         test: /\.md$/,
@@ -19,8 +19,8 @@ const config = {
     return config
   },
 
-
-
+  pageExtensions: ['ts','tsx','js','jsx','md','mdx'],
+  
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
    * must comment the below `i18n` config out.
@@ -32,5 +32,8 @@ const config = {
     defaultLocale: "en",
   },
 };
+
+
+
 export default config;
 

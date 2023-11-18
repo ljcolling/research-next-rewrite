@@ -41,9 +41,9 @@ return (<Fragment>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-32">
                 <div className="text-center">
                   <h3 className="uppercase">Current Position</h3>
-                  <p>Lecturer (Assistant Professor)</p>
-                  <p>School of Psychology</p>
-                  <p>University of Sussex</p>
+                  <p>Machine Learning Engineer</p>
+                  <p>Point Sigma</p>
+                  {/* <p>University of Sussex</p> */}
                 </div>
                 <div className="text-center">
                   <h3 className="uppercase">Contact</h3>

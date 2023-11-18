@@ -8,10 +8,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Info />
-      <article className="article pb-10">
+      <article className="article pb-5">
         <Markdown>{bio}</Markdown>
       </article>
-      <article className="article pt-10">
+      <article className="article pt-5">
         <Markdown>{news}</Markdown>
       </article>
     </>
