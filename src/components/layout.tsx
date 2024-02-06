@@ -68,7 +68,6 @@ export default function Layout({ children }: { children: ReactNode }) {
       />
       <title>Lincoln Colling</title>
       <meta name="description" content="Lincoln Colling Research Page" />
-      // <link rel="icon" href="/favicon.ico" />
     </Head>
     <Body open={open}>
       <NavBar open={open} setOpen={setOpen} />
