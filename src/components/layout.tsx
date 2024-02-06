@@ -111,7 +111,7 @@ ${open ? "-translate-x-0" : "-translate-x-full"
 
 `}
     >
-      <div className="flex flex-col mt-9 ml-4 w-[100%]">
+      <div className="flex flex-col mt-9 ml-4">
         {
           items.map((value, key) => {
             return (
